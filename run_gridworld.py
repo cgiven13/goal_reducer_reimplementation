@@ -192,6 +192,7 @@ def train_model(env_name, policy_name: str, max_steps, agent_view_size, training
     # create a single env
     env = gym.make(env_name, max_steps=max_steps,
                    agent_view_size=agent_view_size)
+    env = env.unwrapped
 
     # if analyze is True:
     if True:
@@ -401,7 +402,7 @@ def train(ctx,
                          max_steps, agent_view_size, training_num, test_num, epochs, buffer_size,
                          step_per_collect, step_per_epoch,
                          subgoal_on, planning, sampling_strategy, qh_dim,
-                         gamma, lr, d_kl_c, batch_size, record, None, None, #logger, log_path,
+                         gamma, lr, d_kl_c, batch_size, record, logger, log_path,
                          seed=seed, analyze=analyze)
     print("after train model")
     pprint.pprint(result)
