@@ -46,7 +46,7 @@ fi
 # ===== classical DQL, no subgoal =====
 for ((i = 1; i <= $nt; i++)); do
     content=$(url_encode "$extra DQL ($i/$nt) @$machine_name started")
-    python /goal_reducer_reimplementation/run_gridworld.py \
+    python ./goal_reducer_reimplementation/run_gridworld.py \
         --seed $((i + seed_offset)) \
         train \
         -e $task \
@@ -69,7 +69,7 @@ done
 # ===== GOLSAv2 w RL: GR+DQL =====
 for ((i = 1; i <= $nt; i++)); do
     content=$(url_encode "$extra GR w/ RL ($i/$nt) @$machine_name started")
-    python /goal_reducer_reimplementation/run_gridworld.py \
+    python ./goal_reducer_reimplementation/run_gridworld.py \
         --seed $((i + seed_offset)) \
         train \
         -e $task \
