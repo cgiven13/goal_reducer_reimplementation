@@ -388,14 +388,14 @@ def train(ctx,
     seed = ctx.obj['seed']
 
     print("before before run")
-    # logger, log_path = before_run(ctx,
-    #                               env_name,
-    #                               policy,
-    #                             #   subgoal_on,
-    #                             #   planning,
-    #                             #   sampling_strategy,
-    #                               debug,
-    #                               extra)
+    logger, log_path = before_run(ctx,
+                                  env_name,
+                                  policy,
+                                #   subgoal_on,
+                                #   planning,
+                                #   sampling_strategy,
+                                  debug,
+                                  extra)
     print("after before run")
     result = train_model(env_name, policy,
                          max_steps, agent_view_size, training_num, test_num, epochs, buffer_size,

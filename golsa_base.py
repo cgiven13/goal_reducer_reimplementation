@@ -202,7 +202,7 @@ def _nstep_return(
 
 
 class PolicyBase(ts.policy.BasePolicy):
-    #pool = mp.Pool(mp.cpu_count())
+    pool = mp.Pool(mp.cpu_count()) #HEREEEEEEEE
     eps = 1e-16
     pass
 
