@@ -203,6 +203,7 @@ def cli(ctx, seed=None):
 def prepare4analysis(env_name, max_steps, agent_view_size):
     env = gym.make(env_name, max_steps=max_steps,
                    agent_view_size=agent_view_size)
+    env = env.unwrapped
     available_pos = _get_valid_pos(copy.deepcopy(env.unwrapped.walls))
     all_possible_obs = []
     all_possible_idx = {}  # (pos) -> idx
@@ -212,6 +213,7 @@ def prepare4analysis(env_name, max_steps, agent_view_size):
         env_specific = gym.make(env_name, max_steps=max_steps,
                                 agent_pos=pos, goal_pos=goal_pos,
                                 agent_view_size=agent_view_size)
+        env_specific = env_specific.unwrapped
 
         obs, info = env_specific.reset()
         all_possible_obs.append(obs['observation'].copy())

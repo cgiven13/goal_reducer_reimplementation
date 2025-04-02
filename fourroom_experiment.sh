@@ -67,25 +67,35 @@ fi
 # done
 
 # ===== GOLSAv2 w RL: GR+DQL =====
+# for ((i = 1; i <= $nt; i++)); do
+#     content=$(url_encode "$extra GR w/ RL ($i/$nt) @$machine_name started")
+#     python ./goal_reducer_reimplementation/experiment_gridworld.py \
+#         --seed $((i + seed_offset)) \
+#         train \
+#         -e $task \
+#         --policy DQLG \
+#         --agent-view-size $agv \
+#         --max-steps $maxsteps \
+#         --extra $extra \
+#         --epochs 10 \
+#         --lr $lr \
+#         --d-kl-c $d_kl_c \
+#         --batch-size $bs \
+#         --subgoal-on True \
+#         --planning True \
+#         --qh-dim $qh_dim \
+#         --analyze $analyze \
+#         --sampling-strategy 4 \
+#         --debug $debug || exit 1
+
+# done
+
 for ((i = 1; i <= $nt; i++)); do
-    content=$(url_encode "$extra GR w/ RL ($i/$nt) @$machine_name started")
+    content=$(url_encode "$extra DQL ($i/$nt) @$machine_name started")
     python ./goal_reducer_reimplementation/experiment_gridworld.py \
         --seed $((i + seed_offset)) \
         train \
         -e $task \
-        --policy DQLG \
-        --agent-view-size $agv \
-        --max-steps $maxsteps \
-        --extra $extra \
-        --epochs 10 \
-        --lr $lr \
-        --d-kl-c $d_kl_c \
-        --batch-size $bs \
-        --subgoal-on True \
-        --planning True \
-        --qh-dim $qh_dim \
-        --analyze $analyze \
-        --sampling-strategy 4 \
-        --debug $debug || exit 1
+        --policy RL \
 
 done
