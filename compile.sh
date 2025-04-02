@@ -1,1 +1,1 @@
-C_INCLUDE_PATH=$(python -c 'import numpy; print(numpy.get_include())') cythonize -i c_utils.pyx
+C_INCLUDE_PATH=$(python -c 'import numpy; print(numpy.get_include())') cythonize -i !./goal_reducer_reimplementation/c_utils.pyx
