@@ -153,7 +153,7 @@ class GOLSAv2DDPG(PolicyBase):
 
         self.tau = 0.005
 
-        self.mp_pool = mp.Pool(os.cpu_count() // 4)
+        self.mp_pool = mp.Pool(max(os.cpu_count() // 4, 1)) #TURTLES
 
         remove_loops_j(np.array([0, 1, 0, 2, 3, 4]))
         self.pos_diff_all = []

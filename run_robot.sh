@@ -28,10 +28,10 @@ policy=DDPG                      # RL model to utilize
 lr=5e-4                          # learning rate
 d_kl_c=0.05                      # kl divergence coefficient
 bs=256                           # batch size
-size=15                          # environment size
-shape=${size}x${size}            # environment shape
+train_num=5                      # number of training environments
+test_num=50                      # number of testing environments
 maxsteps=140                     # max steps per an agent can execute in a single episode
-task=tasks.TVMGFR-$shape-RARG-GI # task name
+task=tasks.RobotArmReach-RARG-GI # task name
 qh_dim=128                       # qnet hidden dimension
 epochs=40
 
@@ -53,6 +53,8 @@ for ((i = 1; i <= $nt; i++)); do
         --policy $policy \
         --max-steps $maxsteps \
         --extra $extra \
+        --training-num $train_num \
+        --test-num $test_num \
         --epochs 15 \
         --lr $lr \
         --d-kl-c $d_kl_c \
@@ -75,6 +77,8 @@ for ((i = 1; i <= $nt; i++)); do
         --policy $policy \
         --max-steps $maxsteps \
         --extra $extra \
+        --training-num $train_num \
+        --test-num $test_num \
         --epochs 10 \
         --lr $lr \
         --d-kl-c $d_kl_c \
