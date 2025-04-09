@@ -16,6 +16,7 @@ import seaborn as sns
 import torch
 from matplotlib.figure import Figure
 from scipy.stats import ttest_ind
+from cycler import cycler
 
 from state_graphs import FourRoomSG, SamplingStrategy
 from utils import running_average
@@ -50,8 +51,13 @@ def save_fig_w_fmts(fig_obj, fig_name, fmts=("svg", "png")):
 
 def errorfill(x, y, yerr, color=None, alpha_fill=0.3, ax=None, label=None):
     ax = ax if ax is not None else plt.gca()
+    # Set up the color cycle if not already done
+    if not hasattr(ax, '_color_cycle'):
+        colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
+        ax.set_prop_cycle(cycler(color=colors))
+        ax._color_cycle = iter(colors)
     if color is None:
-        color = next(ax._get_lines.prop_cycler)["color"]
+        color = next(ax._color_cycle)
     if np.isscalar(yerr) or len(yerr) == len(y):
         ymin = y - yerr
         ymax = y + yerr
@@ -63,8 +69,13 @@ def errorfill(x, y, yerr, color=None, alpha_fill=0.3, ax=None, label=None):
 
 def errorfill_log(x, y, yerr, color=None, alpha_fill=0.3, ax=None, label=None):
     ax = ax if ax is not None else plt.gca()
+    # Set up the color cycle if not already done
+    if not hasattr(ax, '_color_cycle'):
+        colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
+        ax.set_prop_cycle(cycler(color=colors))
+        ax._color_cycle = iter(colors)
     if color is None:
-        color = next(ax._get_lines.prop_cycler)["color"]
+        color = next(ax._color_cycle)
     if np.isscalar(yerr) or len(yerr) == len(y):
         ymin = y - yerr
         ymax = y + yerr
