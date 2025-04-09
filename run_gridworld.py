@@ -90,8 +90,8 @@ def create_golsa_NonRL_policy4GW(env, log_path,
                                device=device, limited_output=True)
     net.to(device)
     if encoding_lr is None:
-        encoding_lr = lr / 10.  # for agv=13 size=15
-        # encoding_lr = lr / 2.  # for agv=13 size=19
+        # encoding_lr = lr / 10.  # for agv=13 size=15
+        encoding_lr = lr / 2.  # for agv=13 size=19
         # encoding_lr = 2 * lr  # for agv=7
 
     optim = torch.optim.Adam(
