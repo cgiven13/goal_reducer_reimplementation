@@ -14,9 +14,11 @@ To run any of the experiments, first execute the first two Google Colab code cel
 ## RUNNING CODE ON A PERSONAL MACHINE
 To run this project on a personal machine, you need Python 3.0, Cython, and CUDA 12.0.
 
+All of the following instructions assume you are running a Git Bash terminal and in the directory one level above the cloned repository directory titled "goal-reducer-reimplementation". 
+
 You can install the necessary Python libraries by cloning the repository and running:
 ```
-pip install -r requirements.txt
+pip install -r goal-reducer-reimplementation/requirements.txt
 ```
 
 To compile and generate an executable file for the c_utils code written in C, run:
