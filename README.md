@@ -1,101 +1,42 @@
-# Overview
+# OVERVIEW
+This repo contains code for the Purdue ECE 57000: Introduction to Artificial Intelligence and Machine Learning course project. This project re-implements the work done in [*Goal Reduction with Loop-Removal Accelerates RL and Models Human Brain Activity in Goal-Directed Learning*](https://nips.cc/virtual/2024/poster/94732)
 
-This repo contains code for the Purdue ECE 57000: Introduction to Artificial Intelligence and Machine Learning course project. This project re-implements the work done in *[Goal Reduction with Loop-Removal Accelerates RL and Models Human Brain Activity in Goal-Directed Learning]*(https://nips.cc/virtual/2024/poster/94732)
+# DEMONSTRATION VIDEO
+The following video walks you through setting up and running the code using Google Colab, as well as the key features of the code and outputs that are logged.
+VIDEO LINK
 
-## Prerequisites
+# RUNNING CODE ON GOOGLE COLAB
 
-We used Python 3.10 and CUDA 12.0.
+To run this code on Google Colab, download the Jupyter Notebook file in this repository and open it in Google Colab. You will also need to connect to a GPU runtime in Colab.
 
-To run this project, you'll need to install dependencies with 
+To run any of the experiments, first execute the first two Google Colab code cells to clone the GitHub repository and install the contents of `requirements.txt`, then navigate to any of the other cells and run it to run the experiment. To adjust the relevant parameters for any of the experiments, modify the flags/variables in the corresponding script file that you can open via the Google Colab files tab.
+
+# RUNNING CODE ON A PERSONAL MACHINE
+To run this project on a personal machine, you need Python 3.0, Cython, and CUDA 12.0.
+
+You can install the necessary Python libraries by cloning the repository and running:
 ```
 pip install -r requirements.txt
 ```
 
-You may also need to compile a cython extension to get faster replay buffer sampling efficiency:
+To compile and generate an executable file for the c_utils code written in C, run:
 ```
-./compile.sh
+chmod +x goal_reducer_reimplementation/compile.sh
+./goal_reducer_reimplementation/compile.sh
 ```
 
-## Quickstart
 
-
-To run the basic comparison with the four-room task, you can run the following command:
-
-```bash
-seed_offset=10 # offset for the random seed
-nt=5           # number of trials
-
-
-extra=Demo
-analyze=False
-debug=False
-
-# first run 11
-lr=5e-4                          # learning rate
-d_kl_c=0.05                      # kl divergence coefficient
-bs=256                           # batch size
-agv=11                           # agent view size
-size=11                          # environment size
-shape=${size}x${size}            # environment shape
-maxsteps=140                     # max steps per an agent can execute in a single episode
-task=tasks.TVMGFR-$shape-RARG-GI # task name
-qh_dim=128                       # qnet hidden dimension
-epochs=40
-
-if [ "$debug" = "True" ]; then
-    train_n=2
-    test_n=2
-else
-    train_n=10
-    test_n=100
-fi
-
-# ===== classical DQL, no subgoal =====
-for ((i = 1; i <= $nt; i++)); do
-    content=$(url_encode "$extra DQL ($i/$nt) @$machine_name started")
-    python run_gridworld.py \
-        --seed $((i + seed_offset)) \
-        train \
-        -e $task \
-        --policy DQL \
-        --agent-view-size $agv \
-        --max-steps $maxsteps \
-        --extra $extra \
-        --epochs 15 \
-        --lr $lr \
-        --d-kl-c $d_kl_c \
-        --batch-size $bs \
-        --subgoal-on False \
-        --planning True \
-        --qh-dim $qh_dim \
-        --analyze $analyze \
-        --sampling-strategy 4 \
-        --debug $debug || exit 1
-done
-
-# ===== GOLSAv2 w RL: GR+DQL =====
-for ((i = 1; i <= $nt; i++)); do
-    content=$(url_encode "$extra GR w/ RL ($i/$nt) @$machine_name started")
-    python run_gridworld.py \
-        --seed $((i + seed_offset)) \
-        train \
-        -e $task \
-        --policy DQLG \
-        --agent-view-size $agv \
-        --max-steps $maxsteps \
-        --extra $extra \
-        --epochs 10 \
-        --lr $lr \
-        --d-kl-c $d_kl_c \
-        --batch-size $bs \
-        --subgoal-on True \
-        --planning True \
-        --qh-dim $qh_dim \
-        --analyze $analyze \
-        --sampling-strategy 4 \
-        --debug $debug || exit 1
-
-done
+To run the sampling strategies experiment, you should run the following:
 ```
-Other experiments follow a similar pattern, see the corresponding flags in `run_gridworld.py`, `run_robot_arm.py`, `run_treasure_hunting.py` and `run_fmri.py`.
+chmod +x goal_reducer_reimplementation/run_sampling.sh
+./goal_reducer_reimplementation/run_sampling.sh
+```
+
+Running the basic four-room navigation task can be achieved by executing:
+```
+chmod +x goal_reducer_reimplementation/run_fourroom.sh
+./run_fourroom.sh
+```
+
+Other experiments follow the same commands but change the filename to `run_robot.sh` for the robot arm reach task or `run_fourroom19.sh` for the four-room navigation task that compares the three different models. To adjust the relevant parameters for any of the experiments, modify the flags/variables in the corresponding script file.
 
