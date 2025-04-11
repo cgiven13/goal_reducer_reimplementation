@@ -46,7 +46,7 @@ fi
 # ===== classical SAC, no subgoal =====
 for ((i = 1; i <= $nt; i++)); do
     content=$(url_encode "$extra SAC ($i/$nt) @$machine_name started")
-    python ./goal_reducer_reimplementation/run_robot_arm.py \
+    python ./goal-reducer-reimplementation/run_robot_arm.py \
         --seed $((i + seed_offset)) \
         train \
         -e $task \
@@ -70,7 +70,7 @@ done
 # ===== GOLSAv2 w RL: GR+SAC =====
 for ((i = 1; i <= $nt; i++)); do
     content=$(url_encode "$extra GR w/ RL ($i/$nt) @$machine_name started")
-    python ./goal_reducer_reimplementation/run_robot_arm.py \
+    python ./goal-reducer-reimplementation/run_robot_arm.py \
         --seed $((i + seed_offset)) \
         train \
         -e $task \
