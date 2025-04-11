@@ -23,21 +23,21 @@ pip install -r goal-reducer-reimplementation/requirements.txt
 
 To compile and generate an executable file for the c_utils code written in C, run:
 ```
-chmod +x goal_reducer_reimplementation/compile.sh
-./goal_reducer_reimplementation/compile.sh
+chmod +x goal-reducer-reimplementation/compile.sh
+./goal-reducer-reimplementation/compile.sh
 ```
 
 
 To run the sampling strategies experiment, you should run the following:
 ```
-chmod +x goal_reducer_reimplementation/run_sampling.sh
-./goal_reducer_reimplementation/run_sampling.sh
+chmod +x goal-reducer-reimplementation/run_sampling.sh
+./goal-reducer-reimplementation/run_sampling.sh
 ```
 
 Running the basic four-room navigation task can be achieved by executing:
 ```
-chmod +x goal_reducer_reimplementation/run_fourroom.sh
-./run_fourroom.sh
+chmod +x goal-reducer-reimplementation/run_fourroom.sh
+./goal-reducer-reimplementation/run_fourroom.sh
 ```
 
 Other experiments follow the same commands but change the filename to `run_robot.sh` for the robot arm reach task or `run_fourroom19.sh` for the four-room navigation task that compares the three different models. To adjust the relevant parameters for any of the experiments, modify the flags/variables in the corresponding script file.
