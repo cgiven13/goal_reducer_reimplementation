@@ -1,7 +1,6 @@
-# Goal Reducer with Loop Removal
+# Overview
 
-This repo contains code for *[Goal Reduction with Loop-Removal Accelerates RL and Models Human Brain Activity in Goal-Directed Learning (NeurIPS 2024 spotlight poster)](https://neurips.cc/virtual/2024/poster/94732)*
-
+This repo contains code for the Purdue ECE 57000: Introduction to Artificial Intelligence and Machine Learning course project. This project re-implements the work done in *[Goal Reduction with Loop-Removal Accelerates RL and Models Human Brain Activity in Goal-Directed Learning]*(https://nips.cc/virtual/2024/poster/94732)
 
 ## Prerequisites
 
