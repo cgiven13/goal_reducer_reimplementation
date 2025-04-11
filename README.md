@@ -5,13 +5,13 @@ This repo contains code for the Purdue ECE 57000: Introduction to Artificial Int
 The following video walks you through setting up and running the code using Google Colab, as well as the key features of the code and outputs that are logged.
 VIDEO LINK
 
-# RUNNING CODE ON GOOGLE COLAB
+## RUNNING CODE ON GOOGLE COLAB
 
 To run this code on Google Colab, download the Jupyter Notebook file in this repository and open it in Google Colab. You will also need to connect to a GPU runtime in Colab.
 
 To run any of the experiments, first execute the first two Google Colab code cells to clone the GitHub repository and install the contents of `requirements.txt`, then navigate to any of the other cells and run it to run the experiment. To adjust the relevant parameters for any of the experiments, modify the flags/variables in the corresponding script file that you can open via the Google Colab files tab.
 
-# RUNNING CODE ON A PERSONAL MACHINE
+## RUNNING CODE ON A PERSONAL MACHINE
 To run this project on a personal machine, you need Python 3.0, Cython, and CUDA 12.0.
 
 You can install the necessary Python libraries by cloning the repository and running:
